@@ -141,6 +141,7 @@ def scripts_login(request, **kwargs):
     print type(request)
     host = request.META['HTTP_HOST'].split(':')[0]
     if host in ('localhost', '127.0.0.1'):
+        print 'localhost'
         return login(request, **kwargs)
     elif request.META['SERVER_PORT'] == '444':
         if request.user.is_authenticated():

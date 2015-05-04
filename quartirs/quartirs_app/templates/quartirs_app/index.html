@@ -1,3 +1,6 @@
-{% load qr_tags %}
-
+<head>
+	{% load qr_tags %}
+</head>
 {% qr_from_text "http://www.google.com" "size" %}
+
+{{request.session.items}}
