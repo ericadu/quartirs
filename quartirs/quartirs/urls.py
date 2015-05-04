@@ -7,4 +7,5 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
     url(r'^quartirs_app/', include('quartirs_app.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/login/', 'mit.scripts_login', name='login',)
 ]

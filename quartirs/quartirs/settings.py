@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'quartirs_app',
     'qrcode',
+    'mit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +51,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'mit.ScriptsRemoteUserMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'mit.ScriptsRemoteUserBackend',
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'quartirs.urls'
