@@ -5,7 +5,6 @@ urlpatterns = [
     # Examples:
     # url(r'^$', 'quartirs.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url('', include('django_socketio.urls')),
     url(r'^quartirs_app/', include('quartirs_app.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/', 'mit.scripts_login', name='login',)

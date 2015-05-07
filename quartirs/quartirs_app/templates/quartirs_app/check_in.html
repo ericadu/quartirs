@@ -1,0 +1,10 @@
+
+<p>Do you want to give your name to {{location}}</p>
+
+<!-- <button rel={{request.session.name}} type="button" class="check_in_btn">Yes</button>
+ -->
+<form action="/quartirs_app/{{qr_hash}}" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="user" value="{{request.user}}">
+	<button>Yes</button>
+</form>

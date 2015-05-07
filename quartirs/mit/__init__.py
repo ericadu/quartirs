@@ -83,6 +83,7 @@ class ScriptsRemoteUserBackend(RemoteUserBackend):
         else:
             return username
     def configure_user(self, user, ):
+        print "********* CONFIGURING"
         username = user.username
         user.set_unusable_password()
         con = ldap.open('ldap-too.mit.edu')
@@ -128,13 +129,6 @@ def get_or_create_mit_user(username, ):
             raise
     else:
         return user, created
-def scripts_login_decorator(function):
-    @wraps(function)
-    def decorator(request, *args, **kwargs):
-        print request
-        scripts_login(request, **kwargs)
-        return function(request, *args, **kwargs)
-    return decorator
 
 def scripts_login(request, **kwargs):
     print request
@@ -142,6 +136,7 @@ def scripts_login(request, **kwargs):
     host = request.META['HTTP_HOST'].split(':')[0]
     if host in ('localhost', '127.0.0.1'):
         print 'localhost'
+        print kwargs
         return login(request, **kwargs)
     elif request.META['SERVER_PORT'] == '444':
         if request.user.is_authenticated():
