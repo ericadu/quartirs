@@ -10,6 +10,8 @@ from quartirs_app.models import QRTable, ValidatedUsers
 @login_required
 def index(request):
 	print request.session
+	print request.META
+	print request.META['SSL_CLIENT_S_DN_Email']
 	return render(request, 'quartirs_app/index.html', {})
 
 def check_in(request, qr_hash):

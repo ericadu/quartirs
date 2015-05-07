@@ -131,7 +131,8 @@ def get_or_create_mit_user(username, ):
         return user, created
 
 def scripts_login(request, **kwargs):
-    print request
+    #print request.META['REMOTE_USER']
+    print request.META
     print type(request)
     host = request.META['HTTP_HOST'].split(':')[0]
     if host in ('localhost', '127.0.0.1'):

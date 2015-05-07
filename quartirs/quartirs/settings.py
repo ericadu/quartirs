@@ -56,8 +56,9 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'mit.ScriptsRemoteUserBackend',
+    #'django.contrib.auth.backends.RemoteUserBackend',
     #'django_auth_ldap.backend.LDAPBackend',
-    #'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'quartirs.urls'
