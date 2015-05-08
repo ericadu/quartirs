@@ -1,0 +1,13 @@
+
+<table border="1">
+	<tr>
+		<th>User</th><th>Location</th><th>Timestamp</th>
+	</tr>
+	{% for valid_user in validUsers %}
+		<tr>
+			<td>{{ valid_user.entity_a }}</td>
+			<td>{{ valid_user.entity_b }}</td>
+			<td>{{ valid_user.check_in_time }}</td>
+		</tr>
+	{% endfor %}
+</table>
