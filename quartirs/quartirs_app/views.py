@@ -45,13 +45,14 @@ def perform_checkin(request, qr_hash):
 def authenticate_service(request):
 	pass
 
-@login_required
+@login_required(login_url='/6857/accounts/login/')
 def generate_qr(request):
 	context = {}
 	qr_hash = sha256(str(getrandbits(256))).hexdigest()
 
 	# Save Hash
 	qr = QRTable.objects.create_qr(qr_hash)
+	
 	context['qr_url'] = request.build_absolute_uri() + str(qr_hash)
 	return render(request, 'quartirs_app/index.html', context)
 
