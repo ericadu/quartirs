@@ -7,11 +7,13 @@ import ldap.filter
 from django.contrib.auth.backends import RemoteUserBackend
 from django.contrib.auth.middleware import RemoteUserMiddleware
 from django.contrib.auth.views import login
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import REDIRECT_FIELD_NAME, authenticate
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import URLValidator, ValidationError
+from django.contrib.auth.models import User
+from django.contrib.auth import login as local_login
 
 from django.conf import settings
 
@@ -131,14 +133,20 @@ def get_or_create_mit_user(username, ):
         return user, created
 
 def scripts_login(request, **kwargs):
-    #print request.META['REMOTE_USER']
-    print request.META
-    print type(request)
     host = request.META['HTTP_HOST'].split(':')[0]
     if host in ('localhost', '127.0.0.1'):
-        print 'localhost'
-        print kwargs
-        return login(request, **kwargs)
+        print 'localhost -- log in static user'
+        # TODO: remove
+        user = authenticate(username='mitstudent', password='123')
+        print user
+        print user.is_authenticated()
+        local_login(request, user)
+        next = "/quartirs_app"
+        if request.method == 'GET' and request.GET['next']:
+            next = request.GET['next']
+        return HttpResponseRedirect(next)
+
+
     elif request.META['SERVER_PORT'] == '444':
         if request.user.is_authenticated():
             # They're already authenticated --- go ahead and redirect

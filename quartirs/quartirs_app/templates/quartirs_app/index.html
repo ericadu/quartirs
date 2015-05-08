@@ -3,4 +3,7 @@
 </head>
 {% qr_from_text "http://www.google.com" "size" %}
 
-{{request.session.items}}
+First name: {{ user.first_name }}
+Last name: {{ user.last_name }}
+Email: {{ user.email }}
+Username: {{ user.username}}
