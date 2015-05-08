@@ -6,6 +6,9 @@ from django.template import RequestContext, loader
 
 from quartirs_app.models import QRTable, ValidatedUsers
 
+from hashlib import sha256
+from random import getrandbits
+
 # Create your views here.
 @login_required
 def index(request):
@@ -44,9 +47,19 @@ def perform_checkin(request, qr_hash):
 def authenticate_service(request):
 	pass
 
+@login_required
 def generate_qr(request):
-	pass
+	context = {}
+	qr_hash = sha256(str(getrandbits(256))).hexdigest()
+
+	# Save Hash
+	qr = QRTable.objects.create_qr(qr_hash)
+	context['qr_url'] = request.build_absolute_uri() + str(qr_hash)
+	return render(request, 'quartirs_app/index.html', context)
+
 def authenticate_requestor(request):
 	pass
+
 def get_validated_users(request):
-	pass
+	# Do we want to do something like get all users in that specific session...?
+	return 
