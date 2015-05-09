@@ -51,7 +51,7 @@ def generate_qr(request):
 	qr_hash = sha256(str(getrandbits(256))).hexdigest()
 
 	# Save Hash
-	qr = QRTable.objects.create_qr(qr_hash)
+	qr = QRTable.objects.create_qr(request.user.username, qr_hash)
 	
 	context['qr_url'] = request.build_absolute_uri() + str(qr_hash)
 	return render(request, 'quartirs_app/index.html', context)

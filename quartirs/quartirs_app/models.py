@@ -1,8 +1,8 @@
 from django.db import models
 
 class QRTableManager(models.Manager):
-  def create_qr(self, qr_hash):
-    qr = self.create(qr_hash=qr_hash)
+  def create_qr(self, user, qr_hash):
+    qr = self.create(entity_b=user, qr_hash=qr_hash)
     return qr
 
 # Create your models here.
