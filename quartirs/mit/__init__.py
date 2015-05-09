@@ -141,7 +141,7 @@ def scripts_login(request, **kwargs):
         print user
         print user.is_authenticated()
         local_login(request, user)
-        next = "/quartirs_app"
+        next = "/6857/quartirs_app"
         if request.method == 'GET' and request.GET['next']:
             next = request.GET['next']
         return HttpResponseRedirect(next)

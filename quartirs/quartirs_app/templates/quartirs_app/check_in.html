@@ -3,7 +3,7 @@
 
 <!-- <button rel={{request.session.name}} type="button" class="check_in_btn">Yes</button>
  -->
-<form action="/quartirs_app/{{qr_hash}}" method="post">
+<form action="/6857/quartirs_app/{{qr_hash}}" method="post">
 	{% csrf_token %}
 	<input type="hidden" name="user" value="{{request.user}}">
 	<button>Yes</button>
