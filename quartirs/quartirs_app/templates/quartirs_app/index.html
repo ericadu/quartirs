@@ -1,5 +1,8 @@
 <head>
 	{% load qr_tags %}
+  {% load staticfiles %}
+
+  <link rel="stylesheet" type="text/css" href='quartirs_app/bootstrap.min.css' />
 </head>
 {% qr_from_text qr_url "size" %}
 

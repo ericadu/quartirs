@@ -1,13 +1,19 @@
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'quartirs_app/bootstrap.min.css' %}" />
+</head>
 
-<table border="1">
-	<tr>
-		<th>User</th><th>Location</th><th>Timestamp</th>
-	</tr>
-	{% for valid_user in validUsers %}
+<div class="table-responsive">
+	<table class="table table-striped" border="1">
 		<tr>
-			<td>{{ valid_user.entity_a }}</td>
-			<td>{{ valid_user.entity_b }}</td>
-			<td>{{ valid_user.check_in_time }}</td>
+			<th>User</th><th>Location</th><th>Timestamp</th>
 		</tr>
-	{% endfor %}
-</table>
+		{% for valid_user in validUsers %}
+			<tr>
+				<td>{{ valid_user.entity_a }}</td>
+				<td>{{ valid_user.entity_b }}</td>
+				<td>{{ valid_user.check_in_time }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
