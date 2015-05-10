@@ -26,8 +26,12 @@
 	</script>
 </head>
 
-<form method="GET" action="/6857/quartirs_app/checkins">
-	<button type="submit">Go To Checkins Page</button>
-</form>
+<body>
+  <div class="container">
+    <form method="GET" action="/6857/quartirs_app/checkins">
+      <button class="btn btn-default btn-lg" type="submit">Go To Checkins Page</button>
+    </form>
 
-{% qr_from_text qr_url "size" %}
+    {% qr_from_text qr_url "size" %}
+  </div>
+</body>

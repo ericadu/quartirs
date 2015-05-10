@@ -1,7 +1,6 @@
 <head>
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'quartirs_app/bootstrap.min.css' %}" />
-</head>
 
 	<script src="jquery-1.11.3.min.js"></script>
 	<script>
@@ -18,12 +17,16 @@
 	</script>
 </head>
 
-<form method="GET" action="/6857/quartirs_app/">
-	<button type="submit">Go To QR Page</button>
-</form>
+<body>
+	<div class="container">
+		<form method="GET" action="/6857/quartirs_app/">
+			<button class="btn btn-default btn-lg" type="submit">Go To QR Page</button>
+		</form>
 
-<div class="table-responsive">
-	<table class="table table-striped" id="userTable" border="1">
-		{% include "quartirs_app/user_table.html" %}
-	</table>
-</div>
+		<div class="table-responsive">
+			<table class="table table-striped" id="userTable" border="1">
+				{% include "quartirs_app/user_table.html" %}
+			</table>
+		</div>
+	</div>
+</body>

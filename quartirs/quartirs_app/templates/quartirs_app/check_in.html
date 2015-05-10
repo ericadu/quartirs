@@ -1,14 +1,18 @@
 <head>
   {% load staticfiles %}
   <link rel="stylesheet" type="text/css" href="{% static 'quartirs_app/bootstrap.min.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-<p>Do you want to give your name to {{location}}</p>
 
 <!-- <button rel={{request.session.name}} type="button" class="check_in_btn">Yes</button>
  -->
-<form action="/6857/quartirs_app/{{qr_hash}}" method="post">
-	{% csrf_token %}
-	<input type="hidden" name="user" value="{{request.user}}">
-	<button>Yes</button>
-</form>
+<div class="container">
+  <form class="form-inline" action="/6857/quartirs_app/{{qr_hash}}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label>Do you want to give your name to {{location}}?</label>
+  	<input type="hidden" name="user" value="{{request.user}}">
+  </div>
+  <button class="btn btn-default">Yes</button>
+  </form>
+</div>
