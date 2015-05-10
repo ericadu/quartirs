@@ -1,6 +1,7 @@
 <head>
 	{% load qr_tags %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	{% load staticfiles %}
+	<script src="{% static 'jquery-1.11.3.min.js' %}"></script>
 	<script>
 		// check if code has been used on a timer and if it has, refresh
 		var testQR = function() {
