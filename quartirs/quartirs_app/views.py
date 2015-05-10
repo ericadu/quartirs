@@ -9,6 +9,9 @@ import pytz
 
 eastern = pytz.timezone('US/Eastern')
 
+from hashlib import sha256
+from random import getrandbits
+
 # Create your views here.
 @login_required(login_url='/6857/accounts/login/')
 def index(request):
@@ -42,10 +45,20 @@ def perform_checkin(request, qr_hash):
 def authenticate_service(request):
 	pass
 
+@login_required(login_url='/6857/accounts/login/')
 def generate_qr(request):
-	pass
+	context = {}
+	qr_hash = sha256(str(getrandbits(256))).hexdigest()
+
+	# Save Hash
+	qr = QRTable.objects.create_qr(request.user.username, qr_hash)
+	
+	context['qr_url'] = request.build_absolute_uri() + str(qr_hash)
+	return render(request, 'quartirs_app/index.html', context)
+
 def authenticate_requestor(request):
 	pass
+
 def get_validated_users(request):
 	validUsers = ValidatedUsers.objects.filter(entity_b=request.user.username)
 	return render(request, 'quartirs_app/user_list.html', { 'validUsers': validUsers})

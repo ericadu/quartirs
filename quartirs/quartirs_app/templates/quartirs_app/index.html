@@ -1,7 +1,7 @@
 <head>
 	{% load qr_tags %}
 </head>
-{% qr_from_text "http://www.google.com" "size" %}
+{% qr_from_text qr_url "size" %}
 
 First name: {{ user.first_name }}
 Last name: {{ user.last_name }}
