@@ -1,9 +1,34 @@
 <head>
 	{% load qr_tags %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		// check if code has been used on a timer and if it has, refresh
+		var testQR = function() {
+			$.ajax({
+				url: '/6857/quartirs_app/testQR/{{qr_hash}}',
+				success: function(data) {
+					console.log(data);
+					if (data === 'True') {
+						// refresh the page
+						console.log('refreshing');
+						location.reload(true);
+					} else {
+						console.log('not refreshing');
+					}
+				}, 
+			});
+		}
+		window.setInterval(function() { testQR() }, 1000);
+	</script>
 </head>
+
+<form method="GET" action="/6857/quartirs_app/checkins">
+	<button type="submit">Go To Checkins Page</button>
+</form>
+
 {% qr_from_text qr_url "size" %}
 
-First name: {{ user.first_name }}
+<!-- First name: {{ user.first_name }}
 Last name: {{ user.last_name }}
 Email: {{ user.email }}
-Username: {{ user.username}}
+Username: {{ user.username}} -->

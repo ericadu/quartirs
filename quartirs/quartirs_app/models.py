@@ -1,4 +1,7 @@
 from django.db import models
+import pytz
+
+eastern = pytz.timezone('US/Eastern')
 
 class QRTableManager(models.Manager):
   def create_qr(self, user, qr_hash):
@@ -22,3 +25,8 @@ class ValidatedUsers(models.Model):
 
   def __unicode__(self):
     return self.entity_a + ' is validated with ' + self.entity_b
+
+  @property
+  def check_in_time_formatted(self):
+    local_time = self.check_in_time.replace(tzinfo=pytz.utc).astimezone(eastern)
+    return local_time.strftime('%b %-d %I:%M:%S %p')

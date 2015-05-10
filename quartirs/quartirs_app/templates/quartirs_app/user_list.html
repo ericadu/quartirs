@@ -1,13 +1,21 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		// check if code has been used on a timer and if it has, refresh
+		var testQR = function() {
+			$.ajax({
+				url: '/6857/quartirs_app/getCheckedInUsers',
+				success: function(validUsers) {
+					$('#userTable').html(validUsers);
+				}, 
+			});
+		}
+		window.setInterval(function() { testQR() }, 1000);
+	</script>
 
-<table border="1">
-	<tr>
-		<th>User</th><th>Location</th><th>Timestamp</th>
-	</tr>
-	{% for valid_user in validUsers %}
-		<tr>
-			<td>{{ valid_user.entity_a }}</td>
-			<td>{{ valid_user.entity_b }}</td>
-			<td>{{ valid_user.check_in_time }}</td>
-		</tr>
-	{% endfor %}
+<form method="GET" action="/6857/quartirs_app/">
+	<button type="submit">Go To QR Page</button>
+</form>
+
+<table id="userTable" border="1">
+	{% include "quartirs_app/user_table.html" %}
 </table>
