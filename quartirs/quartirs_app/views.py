@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 
 from django.template import RequestContext, loader
@@ -65,11 +65,8 @@ def test_qr(request, qr_hash):
 		qr = QRTable.objects.get(qr_hash=qr_hash, entity_b=request.user.username)
 	except QRTable.DoesNotExist:
 		raise Http404('No QR code found for that hash and your username')
-	print qr
 	if qr.entity_a != '':
-		print 'returning true'
 		return HttpResponse(True)
-	print 'returning false'
 	return HttpResponse(False)
 
 @login_required(login_url='/6857/accounts/login/')
