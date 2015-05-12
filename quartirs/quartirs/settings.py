@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'obw5nn1xox$!9n&+pomx^%u#7_gawg=0z#al+s-8jn-(3c$8_0'
+SECRET_KEY = 'o#u5f^+rj@ls!%9=%o0&yp78*fl9_id3vwuz9j&j!*+h!1@^&r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'quartirs_app',
+    'qrcode',
+    'mit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +51,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'mit.ScriptsRemoteUserMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'mit.ScriptsRemoteUserBackend',
+    #'django.contrib.auth.backends.RemoteUserBackend',
+    #'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'quartirs.urls'
@@ -59,6 +70,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.core.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -99,4 +111,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/6857/static/'
+STATIC_ROOT = '/static/'
+MEDIA_URL = '/media/'

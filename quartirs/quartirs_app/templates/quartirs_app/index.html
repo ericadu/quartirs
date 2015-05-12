@@ -1,0 +1,35 @@
+<head>
+	{% load qr_tags %}
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		// check if code has been used on a timer and if it has, refresh
+		var testQR = function() {
+			$.ajax({
+				url: '/6857/quartirs_app/testQR/{{qr_hash}}',
+				success: function(data) {
+					console.log(data);
+					if (data === 'True') {
+						// refresh the page
+						console.log('refreshing');
+						location.reload(true);
+					} else {
+						console.log('not refreshing');
+					}
+				}, 
+			});
+		}
+		window.setInterval(function() { testQR() }, 1000);
+	</script>
+</head>
+
+<body>
+  <div class="container">
+    <form method="GET" action="/6857/quartirs_app/checkins">
+      <button class="btn btn-default btn-lg" type="submit">Go To Checkins Page</button>
+    </form>
+
+    {% qr_from_text qr_url "size" %}
+  </div>
+</body>
