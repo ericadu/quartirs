@@ -32,12 +32,12 @@ def perform_checkin(request, qr_hash):
 	qr = QRTable.objects.get(qr_hash = qr_hash)
 	if qr.entity_a != '':
 		# QR code has already been used
-		return HttpResponse('Code already used, scan a fresh code please')
+		return HttpResponse('<h1>Code already used, scan a fresh code please</h1>')
 	qr.entity_a = entity_a
 	validUser = ValidatedUsers(entity_a=entity_a, entity_b=qr.entity_b)
 	validUser.save()
 	qr.save()
-	return HttpResponse('You\'ve checked in!')
+	return HttpResponse('<h1>You\'ve checked in!</h1>')
 
 @login_required(login_url='/6857/accounts/login/')
 def generate_qr(request):
